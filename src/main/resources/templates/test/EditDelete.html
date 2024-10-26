@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bulletin Board Post</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin-top: 56px;
+        }
+
+        .post-container {
+            background-color: #ffffff;
+            padding: 40px;
+            height: calc(110vh - 56px - 80px - 30px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            box-sizing: border-box;
+        }
+
+        .post-title-label, .post-content-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+            width: 50rem;
+            border: 1px solid #ced4da;
+            padding: 4px;
+        }
+
+        .post-content {
+        	width: 50rem;
+        	height: 49vh;
+        	border: 1px solid #ced4da;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            padding: 4px;
+        }
+
+        .btn-custom {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+        }
+
+        .btn-edit {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .btn-edit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: #ffffff;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-custom:focus {
+            outline: none;
+        }
+
+        @media (max-width: 768px) {
+            .post-title {
+                font-size: 2rem;
+            }
+
+            .post-content {
+                font-size: 1rem;
+            }
+
+            .btn-custom {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Replacement -->
+    <div th:replace="~{test/mainpage :: head}" class="fixed-top"></div>
+
+    <div class="container-fluid">
+        <!-- Main Section -->
+        <section class="section-container">
+            <div class="post-container">
+                <div class="post-title-label">제목</div>
+                <div class="post-title" th:text="${find.title}">Post Title</div>
+                <div class="post-content-label">내용</div>
+                <div class="post-content" th:text="${find.content}">Post content goes here...</div>
+                <div class="btn-group">
+                    <a th:href="@{/submit/{id}/edit(id=${find.id})}" class="btn btn-custom btn-edit">수정하기</a>
+                    <a th:href="@{/submit/{id}/delete(id=${find.id})}" class="btn btn-custom btn-delete">삭제하기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Replacement -->
+        <div th:replace="~{test/mainpage :: foot}"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

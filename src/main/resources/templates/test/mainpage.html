@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MainPage</title>
+    <!-- 부트스트랩 CSS 링크 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        
+        header {
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            background-color: #4a90e2;
+            color: #ffffff;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: bold;
+            margin: 0;
+            position: relative;
+            left: 0;
+            cursor: pointer;
+        }
+        
+        .header-content {
+            font-size: 18px;
+            font-weight: 300;
+            color: #ffffff;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .header-content a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .header-content a:hover {
+            text-decoration: underline;
+        }
+
+     /* .sidebar {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            height: calc(100vh - 180px);
+            width: 250px;
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar h2 {
+            color: #4a90e2;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        } */
+        
+        .section-container {
+            padding-top: 70px;
+        }
+        
+        .table-container {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        tr {
+        	cursor: pointer;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #4a90e2;
+        }
+        
+        th {
+        	color: #555;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+		.pagination-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination {
+            display: inline-flex;
+            padding-left: 0;
+            margin: 0;
+            list-style: none;
+            border-radius: 0.25rem;
+        }
+
+        .page-item {
+            display: flex;
+            align-items: center;
+            margin: 0;
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 0.5rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #007bff;
+            text-align: center;
+            text-decoration: none;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+        }
+
+ 		.page-item.disabled .page-link {
+            color: #6c757d;
+            pointer-events: none;
+            background-color: #ffffff;
+            border-color: #dee2e6;
+        }
+
+        .page-item.active .page-link {
+            z-index: 1;
+            color: #ffffff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .page-link:hover {
+            color: #0056b3;
+            background-color: #e9ecef;
+            border-color: #dee2e6;
+        }
+
+        .btn-add-comment {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-add-comment:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%; 
+            height: 70px; 
+            background-color: #4a90e2; 
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .footer-text {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 300;
+        }
+    </style>
+    <script type="text/javascript">
+		function Clickhomepage(){
+			 window.location.href = '/homepage';
+		}
+    	
+    	function ClickAddComment(){
+    		 window.location.href = '/addCommen';
+    	}
+    	
+    	function Clickforums(){
+   		 	window.location.href = '/forums';
+   		}
+    	
+    	function ClickSubmit(id){
+   		 	window.location.href = '/submit/' + id;
+   		}
+    	
+    </script>
+</head>
+<body>
+    
+    <header th:fragment="head">
+        <h1 class="header-title" onclick="Clickhomepage()">HomePage</h1>
+        <div class="header-content">
+            <a onclick="Clickforums()" style="cursor: pointer;">게시판</a>
+        </div>
+    </header>
+
+<!--     <section th:fragment="side">
+        사이드바
+        <div class="sidebar">
+            <h2>Sidebar</h2>
+            사이드바 내용
+        </div>
+    </section> -->
+    
+    <section class="section-container" th:fragment="postman">
+    	<div class="table-container">
+    		<div class="add-comment-btn-container">
+            	<button class="btn btn-add-comment" onclick="ClickAddComment()">게시글 추가</button>
+            </div>
+            
+	    	<table class="table">
+	    		<thead>
+	    			<tr>
+	    				<th>번호</th>
+	    				<th>제목</th>
+	    				<th>글쓴이</th>
+	    				<th>조회수</th>
+	    			</tr>
+	    		</thead>
+	    		
+	    		<tbody>
+					<tr th:each="post : ${posts}" th:onclick="ClickSubmit([[${post.id}]])">
+		               <td th:text="${post.id}"></td>
+		               <td th:text="${post.title}"></td>
+		               <td th:text="${post.content}"></td>
+		            </tr>	    
+	    		</tbody>      
+	    	</table>
+	    	
+		    <div class="pagination-container">
+		       <nav aria-label="Page navigation">
+		           <ul class="pagination">
+		               <li class="page-item disabled">
+		                   <span class="page-link">이전</span>
+		               </li>
+		               <li class="page-item active" aria-current="page">
+		                   <span class="page-link">1</span>
+		               </li>
+		               <li class="page-item">
+		                   <a class="page-link" href="#">2</a>
+		               </li>
+		               <li class="page-item">
+		                   <a class="page-link" href="#">3</a>
+		               </li>
+		               <li class="page-item">
+		                   <a class="page-link" href="#">다음</a>
+		               </li>
+		           </ul>
+		       </nav>
+	        </div> 	
+	    </div>
+    </section>
+
+    <footer th:fragment="foot">
+        <p class="footer-text">© 2024 Your Company. All rights reserved.</p>
+    </footer>
+</body>
+</html>

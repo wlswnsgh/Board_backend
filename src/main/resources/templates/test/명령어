@@ -1,0 +1,6 @@
+th:value, th:text, th:field <= 데이터를 바인딩을 할 수 있다.
+
+@RequestParam(name="파라미터 선언", 
+defaultValue = "name파라미터가 없으면 이값을 파라미터 값으로 준다.", 
+required = false(파라미터를 제공하지 않으려면 필수 여부를 설정하여 파라미터 값을 제공하지 않아도 에러가 일어나지 않는다.))
+
