@@ -20,18 +20,6 @@ public class Bulletinboard {
 	private String title;
 	private String content;
 	
-	// 에러: 생성자가 매개변수 목록이 같기 때문에 에러가 난다.
-	// private String title;
-	// private String content;
-	
-	// public Bulletinboard(String title, String content) {
-	// this.title = title;
-	// this.content = content;
-	// }
-	
-	// Bulletinboard(String title, String content) 
-	
-	
 	public BulletinboardEntity toEntity() {
 		return new BulletinboardEntity(id, title, content);
 	}

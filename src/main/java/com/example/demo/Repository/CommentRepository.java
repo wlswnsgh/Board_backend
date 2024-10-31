@@ -13,9 +13,9 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
 	@Query(value =
 			"SELECT * " +
 			"FROM comment " +
-			"WHERE bulletinboardentity_id = :bulletinboardentityId",
+			"WHERE bulletinboardentity_id = :bulletinboardentity_id",
 			nativeQuery = true)
-	List<CommentEntity> findByComment(@Param("bulletinboardentityId") Long bulletinboardentityId);
-	
+	List<CommentEntity> findByComment(@Param("bulletinboardentity_id") Long bulletinboardentity_id);
+
 	List<CommentEntity> findByNickname(String nickname);
 }

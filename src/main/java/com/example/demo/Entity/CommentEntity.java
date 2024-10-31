@@ -28,7 +28,7 @@ public class CommentEntity {
 	
 	@ManyToOne
 	@JoinColumn(name="bulletinboardentity_id") 
-	private BulletinboardEntity bulletinboardentity;
+	private BulletinboardEntity bulletinboardentityId;
 	
 	@Column
 	private String nickname;
