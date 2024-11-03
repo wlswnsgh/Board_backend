@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- https://myeongsu0257.tistory.com/147 모달창 만들기 url -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -47,8 +48,8 @@
             color: #555;
             padding: 4px;
         }
-
-        .btn-custom {
+        
+         .btn-custom {
             padding: 12px 24px;
             font-size: 16px;
             font-weight: bold;
@@ -60,28 +61,10 @@
         }
         
         .btn-comment {
-            background-color: #FFD700;
+            background-color: #4a90e2;
             color: #ffffff;
         }
-
-        .btn-edit {
-            background-color: #007bff;
-            color: #ffffff;
-        }
-
-        .btn-edit:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-delete {
-            background-color: #dc3545;
-            color: #ffffff;
-        }
-
-        .btn-delete:hover {
-            background-color: #c82333;
-        }
-
+        
         a {
             text-decoration: none;
         }
@@ -124,10 +107,8 @@
                 <div class="post-title" th:text="${find.title}">Post Title</div>
                 <div class="post-content-label">내용</div>
                 <div class="post-content" th:text="${find.content}">Post content goes here...</div>
-                <div class="btn-group">
-                	<a th:href="@{/submit/{id}/comment(id=${find.id})}" class="btn btn-custom btn-comment">댓글쓰기</a>
-                    <a th:href="@{/submit/{id}/edit(id=${find.id})}" class="btn btn-custom btn-edit">수정하기</a>
-                    <a th:href="@{/submit/{id}/delete(id=${find.id})}" class="btn btn-custom btn-delete">삭제하기</a>
+                 <div class="btn-group">
+                	<a class="btn btn-custom btn-comment">댓글작성</a>
                 </div>
             </div>
         </section>

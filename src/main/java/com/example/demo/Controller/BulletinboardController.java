@@ -56,7 +56,7 @@ public class BulletinboardController {
 	}
 
 	@GetMapping("/submit/{id}")
-	public String Inshow(@PathVariable("id") Long id, Model model){
+	public String Inshow(@PathVariable("id") Long id, Model model) {
 		log.info("id = " + id);
 		BulletinboardEntity findId = bulletinboardrepository.findById(id).orElse(null);
 		model.addAttribute("find", findId);
@@ -91,6 +91,14 @@ public class BulletinboardController {
 			deletes.addFlashAttribute("target", "삭제되었습니다.");
 		}
 		return "redirect:/forums";
+	}
+
+	// 댓글 목록
+	@GetMapping("/submit/{id}/comment")
+	public String Comment(@PathVariable("id") Long id, Model model){
+		BulletinboardEntity findId = bulletinboardrepository.findById(id).orElse(null);
+		model.addAttribute("find", findId);
+		return "test/comment";
 	}
 	
 	
