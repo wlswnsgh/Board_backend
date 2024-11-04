@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<!-- https://myeongsu0257.tistory.com/147 모달창 만들기 url -->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Bulletin Board Post</title>
+    <title>게시판 글 보기</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f8f9fa;
+            background-color: #ffffff; /* 전체 배경색을 흰색으로 설정 */
             margin-top: 56px;
+            min-height: 100vh; /* 최소 높이를 100vh로 설정하여 전체 화면을 채움 */
         }
 
         .post-container {
-            background-color: #ffffff;
             padding: 40px;
-            height: calc(110vh - 56px - 80px - 30px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin: auto;
             box-sizing: border-box;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            height: calc(100vh - 56px - 85px);
+            overflow-y: auto;
         }
 
         .post-title-label, .post-content-label {
@@ -34,49 +35,77 @@
             font-weight: bold;
             color: #007bff;
             margin-bottom: 20px;
-            width: 50rem;
             border: 1px solid #ced4da;
             padding: 4px;
+            border-radius: 5px;
         }
 
         .post-content {
-        	width: 50rem;
-        	height: 49vh;
-        	border: 1px solid #ced4da;
+            height: 49vh;
+            border: 1px solid #ced4da;
             font-size: 1.2rem;
             line-height: 1.8;
             color: #555;
             padding: 4px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            margin-bottom: 20px; /* 제목과 내용 간격 조정 */
         }
-        
-         .btn-custom {
+
+        .comment-section {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .comment-input {
+            height: 50px;
+            width: 98.5%;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            padding: 10px;
+            resize: none;
+        }
+
+        .btn-custom {
             padding: 12px 24px;
             font-size: 16px;
             font-weight: bold;
             border: none;
-            border-radius: 8px;
+            border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            text-decoration: none;
-        }
-        
-        .btn-comment {
-            background-color: #4a90e2;
-            color: #ffffff;
-        }
-        
-        a {
-            text-decoration: none;
         }
 
-        .btn-group {
-            display: flex;
-            gap: 15px;
+        .btn-comment {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .btn-comment:hover {
+            background-color: #0056b3;
+        }
+        
+        .form-control {
+        	margin: 0 0 10px;
+			width: 99.7%;
+			height: 25px;
+        }
+
+        .comment {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            background-color: #e9ecef;
+        }
+
+        .existing-comments {
             margin-top: 20px;
         }
 
-        .btn-custom:focus {
-            outline: none;
+        a {
+            text-decoration: none;
         }
 
         @media (max-width: 768px) {
@@ -96,26 +125,39 @@
     </style>
 </head>
 <body>
-    <!-- Header Replacement -->
+    <!-- 헤더 대체 -->
     <div th:replace="~{test/mainpage :: head}" class="fixed-top"></div>
 
     <div class="container-fluid">
-        <!-- Main Section -->
+        <!-- 메인 섹션 -->
         <section class="section-container">
             <div class="post-container">
                 <div class="post-title-label">제목</div>
-                <div class="post-title" th:text="${find.title}">Post Title</div>
+                <div class="post-title" th:text="${find.title}">게시물 제목</div>
                 <div class="post-content-label">내용</div>
-                <div class="post-content" th:text="${find.content}">Post content goes here...</div>
-                 <div class="btn-group">
-                	<a class="btn btn-custom btn-comment">댓글작성</a>
+                <div class="post-content" th:text="${find.content}">게시물 내용이 여기에 표시됩니다...</div>
+
+                <!-- 댓글 작성 섹션 -->
+                <div class="comment-section">
+                    <h3 class="mb-4">댓글 작성하기</h3>
+                    <input type="text" class="form-control" placeholder="닉네임을 입력하세요..." required>
+                    <textarea class="comment-input mt-2" placeholder="댓글을 입력하세요..." required></textarea>
+                    <button class="btn btn-comment btn-custom mt-2">작성 완료</button>
+                </div>
+
+                <!-- 댓글 섹션 -->
+                <div class="existing-comments">
+                    <h5 class="mb-3">기존 댓글</h5>
+                    <div th:each="comment : ${cmts}" class="comment">
+                        <strong th:text="${comment.nickname}">사용자</strong>: <span th:text="${comment.body}">댓글 내용</span>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Footer Replacement -->
-        <div th:replace="~{test/mainpage :: foot}"></div>
     </div>
+    
+    <!-- 푸터 대체 -->
+    <div th:replace="~{test/mainpage :: foot}"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>

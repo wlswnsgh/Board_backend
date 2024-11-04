@@ -8,12 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.Dto.Bulletinboard;
 import com.example.demo.Entity.BulletinboardEntity;
 import com.example.demo.Repository.BulletinboardRepository;
+import com.example.demo.Service.CommentService;
+import com.example.demo.Dto.Comment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -23,6 +24,9 @@ public class BulletinboardController {
 	
 	@Autowired
 	private BulletinboardRepository bulletinboardrepository;
+	
+	@Autowired
+	private CommentService commentservice;
 	
 	@GetMapping("/homepage")
 	public String MainPage() {
@@ -95,9 +99,11 @@ public class BulletinboardController {
 
 	// 댓글 목록
 	@GetMapping("/submit/{id}/comment")
-	public String Comment(@PathVariable("id") Long id, Model model){
+	public String Comment(@PathVariable("id") Long id, Model model) {
 		BulletinboardEntity findId = bulletinboardrepository.findById(id).orElse(null);
+		List<Comment> cmt = commentservice.comments(id);
 		model.addAttribute("find", findId);
+		model.addAttribute("cmts", cmt);
 		return "test/comment";
 	}
 	
