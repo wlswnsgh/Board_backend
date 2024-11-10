@@ -140,9 +140,10 @@
                 <!-- 댓글 작성 섹션 -->
                 <div class="comment-section">
                     <h3 class="mb-4">댓글 작성하기</h3>
-                    <input type="text" class="form-control" placeholder="닉네임을 입력하세요..." required>
-                    <textarea class="comment-input mt-2" placeholder="댓글을 입력하세요..." required></textarea>
-                    <button class="btn btn-comment btn-custom mt-2">작성 완료</button>
+                    <input type="hidden" id="new-comment-id" >
+                    <input type="text" class="form-control" placeholder="닉네임을 입력하세요..." id ="new-comment-nickname" required>
+                    <textarea class="comment-input mt-2" placeholder="댓글을 입력하세요..." id="new-comment-body" required></textarea>
+                    <button class="btn btn-comment btn-custom mt-2" id="comment-creat-btn">작성 완료</button>
                 </div>
 
                 <!-- 댓글 섹션 -->
@@ -161,5 +162,35 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+	<script>
+ 		const commentevent = document.querySelector("#comment-creat-btn");
+		
+		commentevent.addEventListener("click", function(){
+			console.log("버튼을 클릭했습니다.");
+
+			const comments = {
+				commentId: document.querySelector("#new-comment-id").value,
+				nickname: document.querySelector("#new-comment-nickname").value,
+				body: document.querySelector("#new-comment-body").value,
+			};
+			
+			console.log(comments);
+			
+ 			fetch(`/board/comment/post/${comments.commentId}`, {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(comments)
+			}).then(response => {
+				console.log(response);
+				const msg = (response.ok) ? "댓글이 등록되었습니다." : "댓글 등록 실패...!";
+				alert(msg);
+				window.location.reload();
+			}); 
+			
+		}); 
+
+	</script>
 </body>
 </html>
