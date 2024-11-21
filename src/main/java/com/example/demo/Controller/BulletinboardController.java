@@ -48,20 +48,20 @@ public class BulletinboardController {
 	@PostMapping("/submit")
 	public String SumitClick(Bulletinboard board) {
 //		System.out.println(board.toString());
-		log.info(board.toString());
+//		log.info(board.toString());
 		
 		BulletinboardEntity bulletinboardentity = board.toEntity();
-		log.info(bulletinboardentity.toString());
+//		log.info(bulletinboardentity.toString());
 		
 		BulletinboardEntity saved = bulletinboardrepository.save(bulletinboardentity);
 //		System.out.println(saved.toString());
-		log.info(saved.toString());
+//		log.info(saved.toString());
 		return "redirect:/forums";
 	}
 
 	@GetMapping("/submit/{id}")
 	public String Inshow(@PathVariable("id") Long id, Model model) {
-		log.info("id = " + id);
+//		log.info("id = " + id);
 		BulletinboardEntity findId = bulletinboardrepository.findById(id).orElse(null);
 		model.addAttribute("find", findId);
 		return "test/EditDelete";
@@ -97,15 +97,15 @@ public class BulletinboardController {
 		return "redirect:/forums";
 	}
 
+
 	// 댓글 목록
 	@GetMapping("/submit/{id}/comment")
 	public String Comment(@PathVariable("id") Long id, Model model) {
 		BulletinboardEntity findId = bulletinboardrepository.findById(id).orElse(null);
 		List<Comment> cmt = commentservice.comments(id);
-		model.addAttribute("find", findId);
+		model.addAttribute("finda", findId);
 		model.addAttribute("cmts", cmt);
 		return "test/comment";
 	}
-	
 	
 }
