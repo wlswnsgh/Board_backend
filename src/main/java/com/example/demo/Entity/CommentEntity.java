@@ -39,11 +39,6 @@ public class CommentEntity {
 	private String body;
     
     public static CommentEntity createComment(Comment dto, BulletinboardEntity board) {
-   	 if(dto.getId() != null) {
-   		 throw new IllegalArgumentException("댓글 생성 실패! 댓글의 id가 없어야 함니다.");
-   	 } if(dto.getCommentId() != board.getId()) {
-   		 throw new IllegalArgumentException("댓글 생성 실패! 댓글의 id가 없어야 함니다.");
-   	 }
    	 
    	 return new CommentEntity(
    			 dto.getId(),
