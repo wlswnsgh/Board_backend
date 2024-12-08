@@ -58,6 +58,4 @@ public class ServiceBulletinboardController {
 			   ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
 	
-	
-	
 }
