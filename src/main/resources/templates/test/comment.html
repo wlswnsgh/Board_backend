@@ -292,6 +292,11 @@
 
 	    console.log(comments);
 	    
+	    if(!comments.nickname || !comments.body) {
+	    	alert("닉네임 또는 댓글를 적어주세요");
+	    	return;
+	    }
+	    
    	    const url = `/board/comment/post/${comments.Comment_id}`;
    	 	console.log("Request URL:", url);  // 콘솔에 URL 출력
 
