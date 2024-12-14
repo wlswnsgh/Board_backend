@@ -48,19 +48,5 @@ public class CommentEntity {
    	 );
    	 
     }
-    
-    public void patch(Comment cmt) {
-    	if(this.id != cmt.getId()) {
-    		throw new IllegalArgumentException("댓글 수정 실패! 잘못된 id가 입력됐습니다.");
-    	} 
-    	
-    	if(cmt.getNickname() != null) {
-    		this.nickname = cmt.getNickname();
-    	}
-    	
-    	if(cmt.getBody() != null) {
-    		this.body = cmt.getBody();
-    	}
-    }
 	
 }

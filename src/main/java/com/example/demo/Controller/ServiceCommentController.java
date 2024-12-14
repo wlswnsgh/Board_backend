@@ -47,7 +47,7 @@ public class ServiceCommentController {
 	}
 	
 	@PatchMapping("/board/comment/patch/{id}")
-	public ResponseEntity<Comment> update(@PathVariable Long id,
+	public ResponseEntity<Comment> update(@PathVariable("id") Long id,
 										  @RequestBody Comment dto) {
 		Comment updatedto = commentservice.update(id, dto);
 		return ResponseEntity.status(HttpStatus.OK).body(updatedto);
