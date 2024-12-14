@@ -255,7 +255,7 @@
     	<div class="modal_body">
     		<input type="text" class="nickname_modal"  placeholder="닉네임을 수정하세요...">
     		<textarea class="text_modal"  placeholder="댓글를 수정하세요..."></textarea>
-    		<button type="button" class="modal_edit">댓글수정</button>	
+    		<button type="button" class="modal_edit" id="modalIdEdit">댓글수정</button>	
     		<button type="button" class="modal_close" id="modalclose">수정취소</button>
     	</div>
     </div>
@@ -268,13 +268,19 @@
 	
 	const modalclick = document.querySelector("#modalon");
 	const modals = document.querySelector(".modal");
-	const madalclose = document.querySelector("#modalclose");
+	const modalclose = document.querySelector("#modalclose");
+	const modaledit = document.querySelector("#modalIdEdit");
+	
 	
 	modalclick.addEventListener("click", () => {
 		modals.style.display="flex";	
 	});
 	
-	madalclose.addEventListener("click", () => {
+	modaledit.addEventListener("click", function() {
+		
+	});
+	
+	modalclose.addEventListener("click", () => {
 		modals.style.display="none";
 	});
 	
