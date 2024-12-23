@@ -53,7 +53,7 @@ public class ServiceCommentController {
 		return ResponseEntity.status(HttpStatus.OK).body(updatedto);
 	}
 	
-	@DeleteMapping("/board/comment/delet/{id}")
+	@DeleteMapping("/board/comment/deletes/{id}")
 	public ResponseEntity<Comment> delete(@PathVariable("id") Long id) {
 		Comment deletedto = commentservice.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).body(deletedto);

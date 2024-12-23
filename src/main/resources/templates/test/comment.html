@@ -271,6 +271,7 @@
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
 		   
+			// 댓글 생성
 			const commentevent = document.querySelector("#comment-creat-btn");    
 		    commentevent.addEventListener("click", function() {
 		        console.log("버튼을 클릭했습니다.");
@@ -306,10 +307,10 @@
 		        });
 		    });
 		    
+		    // 댓글 수정
 		    const modals = document.querySelector(".modal");
 		    const modalclose = document.querySelector("#modalclose");
 		    const modaledit = document.querySelector("#modalIdEdit");
-		    
 		    const commentEditButtons = document.querySelectorAll(".iconRight");
 		    commentEditButtons.forEach(button => {
 		        button.addEventListener("click", function() {
@@ -326,7 +327,7 @@
 		        });
 		    });
 		
-		    // Close modal
+		    // 수정 모달창 닫음
 		    modalclose.addEventListener("click", () => {
 		        modals.style.display = "none";
 		    });
@@ -370,6 +371,42 @@
 		        }).catch(error => {
 		            console.error("AJAX 요청 오류:", error);  // 오류 출력
 		        });
+		    });
+		    
+		    // 댓글삭제
+		    const commentdeletesButton = document.querySelectorAll(".iconRights");
+		    commentdeletesButton.forEach(function(button) { 
+				button.addEventListener("click", function() {
+			    	const comment = button.closest(".comment");
+			    	const commentId = comment.getAttribute("data-comment-id");
+			    	
+			    	if (!commentId) {
+		                console.error("댓글 ID가 없습니다!");
+		                return;
+		            }
+			    	
+			    	console.log('삭제 버튼 클릭됨!');
+			    	const userConfirmed = confirm("정말로 댓글을 삭제하시겠습니까?"); 
+			    	if(userConfirmed) {
+			    		const url = `/board/comment/deletes/${commentId}`;
+			    		
+			    		fetch(url, {
+		                    method: "DELETE",
+		                    headers: {
+		                        "Content-Type": "application/json"
+		                    },
+		                }).then(response => {
+		                    const msg = response.ok ? "댓글이 삭제되었습니다." : "댓글 삭제 실패...!";
+		                    alert(msg);
+		                    if (response.ok) {
+		                        // 삭제된 댓글 UI에서 제거
+		                        comment.remove();
+		                    }
+		                }).catch(error => {
+		                    console.error("AJAX 요청 오류:", error);
+		                });
+			    	}
+				});
 		    });
 		    
 		});
