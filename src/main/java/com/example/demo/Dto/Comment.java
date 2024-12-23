@@ -26,6 +26,6 @@ public class Comment {
        			 comment.getNickname(),
        			 comment.getBody()
        	);
-     }
+     }                  
      
 }

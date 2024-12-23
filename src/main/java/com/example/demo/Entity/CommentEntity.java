@@ -48,5 +48,15 @@ public class CommentEntity {
    	 );
    	 
     }
+    
+    public void patch(Comment dto) {
+    	if(dto.getId() != null) {
+    		this.id = dto.getId();
+    	} if(dto.getNickname() != null) {
+    		this.nickname = dto.getNickname();
+    	} if(this.getBody() != null) {
+    		this.body = dto.getBody();
+    	}
+    }
 	
 }

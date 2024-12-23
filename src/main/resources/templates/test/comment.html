@@ -138,6 +138,10 @@
         .iconRight {
 		    cursor: pointer;
         }
+        
+        .iconRights {
+        	cursor: pointer;
+        }
 		
 		.material-symbols-outlined {
 		  font-variation-settings:
@@ -243,7 +247,7 @@
                         </div>
                         <div class="icon-right-container">
 	                        <button type="button" id="modalon" class="iconRight"><span class="material-symbols-outlined">menu</span></button>
-		                	<button type="button" class="iconRight"><span class="material-symbols-outlined">close</span></button>
+		                	<button type="button" class="iconRights"><span class="material-symbols-outlined">close</span></button>
 	                	</div>
                     </div>
                 </div>
@@ -266,78 +270,8 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', () => {
-
-		    const modals = document.querySelector(".modal");
-		    const modalclose = document.querySelector("#modalclose");
-		    const modaledit = document.querySelector("#modalIdEdit");
-		    
-	
-		    const commentEditButtons = document.querySelectorAll(".iconRight");
-		    commentEditButtons.forEach(button => {
-		        button.addEventListener("click", function() {
-		            const comment = button.closest('.comment');
-		            const nickname = comment.querySelector('strong').textContent;
-		            const body = comment.querySelector('span').textContent;
-		            const commentId = comment.getAttribute('data-comment-id');  // 댓글 ID 가져오기
-		
-		            document.querySelector('.nickname_modal').value = nickname;
-		            document.querySelector('.text_modal').value = body;
-		            document.querySelector('.nickname_modal').setAttribute('data-comment-id', commentId);
-		
-		            modals.style.display = "flex"; 
-		        });
-		    });
-		
-		    // Close modal
-		    modalclose.addEventListener("click", () => {
-		        modals.style.display = "none";
-		    });
-		    
-		    // Handle comment update
-		    modaledit.addEventListener("click", function() {
-		        const editedNickname = document.querySelector('.nickname_modal').value;
-		        const editedText = document.querySelector('.text_modal').value;
-		        const commentId = document.querySelector('.nickname_modal').getAttribute('data-comment-id'); // 수정할 댓글 ID 가져오기
-		
-		        // 댓글 수정에 필요한 정보 준비
-		        const updatedComment = {
-		            nickname: editedNickname,
-		            body: editedText,
-		            commentId: commentId,
-		        };
-		
-		        console.log("Updated Comment:", updatedComment);
-		
-		        // 서버로 댓글 수정 요청
-		        const url = `/board/comment/patch/${commentId}`;  // 서버에서 해당 댓글을 수정하는 URL
-		        fetch(url, {
-		            method: "PATCH",  // 수정 요청이므로 PATCH 메서드 사용
-		            headers: {
-		                "Content-Type": "application/json"
-		            },
-		            body: JSON.stringify(updatedComment)  // 수정된 댓글을 전송
-		        }).then(response => {
-		            const msg = response.ok ? "댓글이 수정되었습니다." : "댓글 수정 실패...!";
-		            alert(msg);
-		            
-		            if (response.ok) {
-		                // 수정된 댓글을 기존 UI에 반영
-		                const commentElement = document.querySelector(`[data-comment-id='${commentId}']`);
-		                if (commentElement) {
-		                    // 댓글 내용 수정
-		                    commentElement.querySelector('strong').textContent = editedNickname;
-		                    commentElement.querySelector('span').textContent = editedText;
-		                }
-
-		                modals.style.display = "none";  // 모달 닫기
-		            }
-		        }).catch(error => {
-		            console.error("AJAX 요청 오류:", error);  // 오류 출력
-		        });
-		    });
-		    
-		    // Handle comment creation
-		    const commentevent = document.querySelector("#comment-creat-btn");    
+		   
+			const commentevent = document.querySelector("#comment-creat-btn");    
 		    commentevent.addEventListener("click", function() {
 		        console.log("버튼을 클릭했습니다.");
 		
@@ -371,6 +305,73 @@
 		            console.error("AJAX 요청 오류:", error);  // 오류 출력
 		        });
 		    });
+		    
+		    const modals = document.querySelector(".modal");
+		    const modalclose = document.querySelector("#modalclose");
+		    const modaledit = document.querySelector("#modalIdEdit");
+		    
+		    const commentEditButtons = document.querySelectorAll(".iconRight");
+		    commentEditButtons.forEach(button => {
+		        button.addEventListener("click", function() {
+		            const comment = button.closest('.comment');
+		            const nickname = comment.querySelector('strong').textContent;
+		            const body = comment.querySelector('span').textContent;
+		            const commentId = comment.getAttribute('data-comment-id');  // 댓글 ID 가져오기
+		
+		            document.querySelector('.nickname_modal').value = nickname;
+		            document.querySelector('.text_modal').value = body;
+		            document.querySelector('.nickname_modal').setAttribute('data-comment-id', commentId);
+		
+		            modals.style.display = "flex"; 
+		        });
+		    });
+		
+		    // Close modal
+		    modalclose.addEventListener("click", () => {
+		        modals.style.display = "none";
+		    });
+		    
+		    modaledit.addEventListener("click", function() {
+		        const editedNickname = document.querySelector('.nickname_modal').value;
+		        const editedText = document.querySelector('.text_modal').value;
+		        const commentId = document.querySelector('.nickname_modal').getAttribute('data-comment-id'); // 수정할 댓글 ID 가져오기
+
+		        // 댓글 수정에 필요한 정보 준비
+		        const updatedComment = {
+		            nickname: editedNickname,
+		            body: editedText,
+		            commentId: commentId,
+		        };
+
+		        console.log("Updated Comment:", updatedComment);
+
+		        // 서버로 댓글 수정 요청
+		        const url = `/board/comment/patch/${commentId}`;  // 서버에서 해당 댓글을 수정하는 URL
+		        fetch(url, {
+		            method: "PATCH",  // 수정 요청이므로 PATCH 메서드 사용
+		            headers: {
+		                "Content-Type": "application/json"
+		            },
+		            body: JSON.stringify(updatedComment)  // 수정된 댓글을 전송
+		        }).then(response => {
+		            const msg = response.ok ? "댓글이 수정되었습니다." : "댓글 수정 실패...!";
+		            alert(msg);
+		            if (response.ok) {
+		                // 수정된 댓글을 기존 UI에 반영
+		                const commentElement = document.querySelector(`[data-comment-id='${commentId}']`);
+		                if (commentElement) {
+		                    // 댓글 내용 수정
+		                    commentElement.querySelector('strong').textContent = editedNickname;
+		                    commentElement.querySelector('span').textContent = editedText;
+		                }
+
+		                modals.style.display = "none";  // 모달 닫기
+		            }
+		        }).catch(error => {
+		            console.error("AJAX 요청 오류:", error);  // 오류 출력
+		        });
+		    });
+		    
 		});
 	</script>	
 </body>

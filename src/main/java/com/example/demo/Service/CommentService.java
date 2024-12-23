@@ -47,7 +47,8 @@ public class CommentService {
 	public Comment update(Long id, Comment cmt) {
 		CommentEntity target = commentrepository.findById(id)
 				.orElseThrow(() -> new IllegalArgumentException("댓글 수정 실패!" +
-		              "대상 댓글이 없습니다."));
+		                    "대상 댓글이 없습니다."));
+		target.patch(cmt);
 		CommentEntity update = commentrepository.save(target);
 		return Comment.creatCommentDto(update);
 		
