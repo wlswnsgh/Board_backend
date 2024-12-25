@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.Dto.Bulletinboard;
 import com.example.demo.Entity.BulletinboardEntity;
 import com.example.demo.Repository.BulletinboardRepository;
+import com.example.demo.Repository.CommentRepository;
 import com.example.demo.Service.CommentService;
 import com.example.demo.Dto.Comment;
 
@@ -24,6 +25,9 @@ public class BulletinboardController {
 	
 	@Autowired
 	private BulletinboardRepository bulletinboardrepository;
+	
+	@Autowired
+	private CommentRepository commentrepository;
 	
 	@Autowired
 	private CommentService commentservice;
@@ -91,6 +95,7 @@ public class BulletinboardController {
 	public String delete(@PathVariable("id") Long id, RedirectAttributes deletes) {
 		BulletinboardEntity delete = bulletinboardrepository.findById(id).orElse(null);
 		if(delete != null) {
+			commentrepository.deleteByBulletinboardEntityId(id);
 			bulletinboardrepository.delete(delete);
 			deletes.addFlashAttribute("target", "삭제되었습니다.");
 		}
