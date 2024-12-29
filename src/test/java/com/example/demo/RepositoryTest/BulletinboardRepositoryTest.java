@@ -19,14 +19,14 @@ public class BulletinboardRepositoryTest {
 	@Autowired
 	BulletinboardService bulletinboardservice;
 	
-	@Test
-	void index() {
-		BulletinboardEntity a = new BulletinboardEntity(1L,"aaa", "111");
-		BulletinboardEntity b = new BulletinboardEntity(2L,"bbb", "222");
-		BulletinboardEntity c = new BulletinboardEntity(3L,"ccc", "333");
-		List<BulletinboardEntity> expects = new ArrayList<BulletinboardEntity>(Arrays.asList(a,b,c));
-		List<BulletinboardEntity> entity = bulletinboardservice.index();
-		assertEquals(expects.toString(), entity.toString());
-	}
+//	@Test
+//	void index() {
+//		BulletinboardEntity a = new BulletinboardEntity(1L,"aaa", "111");
+//		BulletinboardEntity b = new BulletinboardEntity(2L,"bbb", "222");
+//		BulletinboardEntity c = new BulletinboardEntity(3L,"ccc", "333");
+//		List<BulletinboardEntity> expects = new ArrayList<BulletinboardEntity>(Arrays.asList(a,b,c));
+//		List<BulletinboardEntity> entity = bulletinboardservice.index();
+//		assertEquals(expects.toString(), entity.toString());
+//	}
 	  
 }

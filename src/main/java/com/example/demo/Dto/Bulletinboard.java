@@ -19,9 +19,10 @@ public class Bulletinboard {
 	private Long id;
 	private String title;
 	private String content;
+	private int displayOrder;
 	
 	public BulletinboardEntity toEntity() {
-		return new BulletinboardEntity(id, title, content);
+		return new BulletinboardEntity(id, title, content, displayOrder);
 	}
 	
 }

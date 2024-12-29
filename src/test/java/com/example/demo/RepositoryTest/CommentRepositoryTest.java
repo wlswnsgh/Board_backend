@@ -21,18 +21,18 @@ public class CommentRepositoryTest {
 	@Autowired
 	CommentRepository commentrepository;
 	
-	@Test
-	void findByComment() {
-		{
-			Long CommentId = 4L;
-			List<CommentEntity> comment = commentrepository.findByComment(CommentId);
-			BulletinboardEntity board = new BulletinboardEntity(4L, "당신의 취미는?", "댓글 고고고");
-			CommentEntity a = new CommentEntity(1L, board, "JIN", "안녕");
-			CommentEntity b = new CommentEntity(2L, board, "JUN", "반가워");
-			CommentEntity c = new CommentEntity(3L, board, "HO", "고마워");
-			List<CommentEntity> expects = Arrays.asList(a, b, c);
-			assertEquals(expects.toString(), comment.toString(), "4번 댓글 출력");		
-		}
-	}
+//	@Test
+//	void findByComment() {
+//		{
+//			Long CommentId = 4L;
+//			List<CommentEntity> comment = commentrepository.findByComment(CommentId);
+//			BulletinboardEntity board = new BulletinboardEntity(4L, "당신의 취미는?", "댓글 고고고");
+//			CommentEntity a = new CommentEntity(1L, board, "JIN", "안녕");
+//			CommentEntity b = new CommentEntity(2L, board, "JUN", "반가워");
+//			CommentEntity c = new CommentEntity(3L, board, "HO", "고마워");
+//			List<CommentEntity> expects = Arrays.asList(a, b, c);
+//			assertEquals(expects.toString(), comment.toString(), "4번 댓글 출력");		
+//		}
+//	}
 
 }

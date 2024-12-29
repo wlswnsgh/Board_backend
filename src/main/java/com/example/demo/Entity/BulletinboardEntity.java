@@ -32,6 +32,9 @@ public class BulletinboardEntity {
 	@Column
 	private String content;
 	
+    @Column
+    private Integer displayOrder;
+		
 	public void patch(BulletinboardEntity Bbe) {
 		if(Bbe.title != null) {
 			this.title = Bbe.title;
@@ -39,6 +42,10 @@ public class BulletinboardEntity {
 		if (Bbe.content != null) {
 			this.content = Bbe.content;
 		}
+		
+	    if (Bbe.displayOrder != null) {
+	        this.displayOrder = Bbe.displayOrder;
+	    }
 	}
 	
 }

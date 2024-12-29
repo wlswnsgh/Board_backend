@@ -96,8 +96,10 @@ public class BulletinboardController {
 	public String delete(@PathVariable("id") Long id, RedirectAttributes deletes) {
 		BulletinboardEntity delete = bulletinboardrepository.findById(id).orElse(null);
 		if(delete != null) {
+			int order = delete.getDisplayOrder();
 			commentrepository.deleteByBulletinboardEntityId(id);
 			bulletinboardrepository.delete(delete);
+			bulletinboardrepository.updateDisplayOrderAfterDelete(order);
 			deletes.addFlashAttribute("target", "삭제되었습니다.");
 		}
 		return "redirect:/forums";
