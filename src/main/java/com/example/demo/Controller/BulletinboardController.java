@@ -72,14 +72,15 @@ public class BulletinboardController {
 	}
 	
 	// 생성
-	@PostMapping("/submit/update")
+	@PostMapping("/submit/update") //수정할 부분
 	public String EditUpdate(Bulletinboard board) {
 		BulletinboardEntity bulletinboardentity = board.toEntity();
 		BulletinboardEntity edit = bulletinboardrepository.findById(bulletinboardentity.getId()).orElse(null);
 		if(edit != null) {
 			bulletinboardrepository.save(bulletinboardentity);
 		}
-		return "redirect:/forums";
+		
+		return "redirect:/submit/" + bulletinboardentity.getId();
 	}
 	
 	// 수정
@@ -101,7 +102,6 @@ public class BulletinboardController {
 		}
 		return "redirect:/forums";
 	}
-
 
 	// 댓글 목록
 	@GetMapping("/submit/{id}/comment")

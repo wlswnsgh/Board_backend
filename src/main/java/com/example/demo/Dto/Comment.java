@@ -13,6 +13,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class Comment {
+	
      private Long id;
      @JsonProperty("Comment_Id")
      private Long commentId;

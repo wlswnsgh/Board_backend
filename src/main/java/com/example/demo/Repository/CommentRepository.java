@@ -25,4 +25,5 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
     @Transactional
     @Query(value = "DELETE FROM comment WHERE bulletinboardentity_id = :bulletinboardentity_id", nativeQuery = true)
     void deleteByBulletinboardEntityId(@Param("bulletinboardentity_id") Long bulletinboardEntityId);
+	
 }
